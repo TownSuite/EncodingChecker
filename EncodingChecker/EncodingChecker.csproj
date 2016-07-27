@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CE79E3D4-788B-4D55-BCF1-0EDCA2F74C4D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EncodingChecker</RootNamespace>
+    <AssemblyName>EncodingChecker</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Ude.Core\Big5Prober.cs" />
+    <Compile Include="Ude.Core\BitPackage.cs" />
+    <Compile Include="Ude.Core\CharDistributionAnalyser.cs" />
+    <Compile Include="Ude.Core\CharsetProber.cs" />
+    <Compile Include="Ude.Core\Charsets.cs" />
+    <Compile Include="Ude.Core\CodingStateMachine.cs" />
+    <Compile Include="Ude.Core\EscCharsetProber.cs" />
+    <Compile Include="Ude.Core\EscSM.cs" />
+    <Compile Include="Ude.Core\EUCJPProber.cs" />
+    <Compile Include="Ude.Core\EUCKRProber.cs" />
+    <Compile Include="Ude.Core\EUCTWProber.cs" />
+    <Compile Include="Ude.Core\GB18030Prober.cs" />
+    <Compile Include="Ude.Core\HebrewProber.cs" />
+    <Compile Include="Ude.Core\JapaneseContextAnalyser.cs" />
+    <Compile Include="Ude.Core\LangBulgarianModel.cs" />
+    <Compile Include="Ude.Core\LangCyrillicModel.cs" />
+    <Compile Include="Ude.Core\LangGreekModel.cs" />
+    <Compile Include="Ude.Core\LangHebrewModel.cs" />
+    <Compile Include="Ude.Core\LangHungarianModel.cs" />
+    <Compile Include="Ude.Core\LangThaiModel.cs" />
+    <Compile Include="Ude.Core\Latin1Prober.cs" />
+    <Compile Include="Ude.Core\MBCSGroupProber.cs" />
+    <Compile Include="Ude.Core\MBCSSM.cs" />
+    <Compile Include="Ude.Core\SBCharsetProber.cs" />
+    <Compile Include="Ude.Core\SBCSGroupProber.cs" />
+    <Compile Include="Ude.Core\SequenceModel.cs" />
+    <Compile Include="Ude.Core\SJISProber.cs" />
+    <Compile Include="Ude.Core\SMModel.cs" />
+    <Compile Include="Ude.Core\UniversalDetector.cs" />
+    <Compile Include="Ude.Core\UTF8Prober.cs" />
+    <Compile Include="Ude\CharsetDetector.cs" />
+    <Compile Include="Ude\DetectionConfidence.cs" />
+    <Compile Include="Ude\ICharsetDetector.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
