@@ -48,6 +48,8 @@
             this.actionProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.actionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnView = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             lblBaseDirectory = new System.Windows.Forms.Label();
             lblFileMasks = new System.Windows.Forms.Label();
             lblValidCharsets = new System.Windows.Forms.Label();
@@ -101,8 +103,8 @@
             // 
             // txtBaseDirectory
             // 
-            this.txtBaseDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBaseDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBaseDirectory.Location = new System.Drawing.Point(10, 28);
             this.txtBaseDirectory.Name = "txtBaseDirectory";
             this.txtBaseDirectory.Size = new System.Drawing.Size(480, 21);
@@ -171,9 +173,9 @@
             // 
             // lstResults
             // 
-            this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstResults.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             colEncoding,
             colFileName,
@@ -186,6 +188,8 @@
             this.lstResults.TabIndex = 9;
             this.lstResults.UseCompatibleStateImageBehavior = false;
             this.lstResults.View = System.Windows.Forms.View.Details;
+            this.lstResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstResults_KeyDown);
+            this.lstResults.KeyUp += new System.Windows.Forms.KeyEventHandler(this.lstResults_KeyUp);
             // 
             // dlgBrowseDirectories
             // 
@@ -223,11 +227,26 @@
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.OnAction);
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(511, 154);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 14;
+            this.btnExport.Text = "&Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "CSV|*.csv";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 519);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.lstResults);
@@ -270,6 +289,8 @@
         private System.Windows.Forms.ToolStripStatusLabel actionStatus;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

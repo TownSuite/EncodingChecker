@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -318,5 +320,61 @@ namespace EncodingChecker
         private const string ViewCaption = "Vie&w";
         private const string ValidateCaption = "&Validate";
         private const string CancelCaption = "&Cancel";
+
+        private void lstResults_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (sender == lstResults)
+            {
+                if (e.Control && e.KeyCode == Keys.C)
+                    CopySelectedValuesToClipboard();
+            }
+        }
+
+        private void CopySelectedValuesToClipboard()
+        {
+            var data = GetData(lstResults.SelectedItems);
+            Clipboard.SetText(data);
+        }
+
+        private void lstResults_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+                lstResults.MultiSelect = true;
+                foreach (ListViewItem item in lstResults.Items)
+                {
+                    item.Selected = true;
+                }
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var data = GetData(lstResults.Items);
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog1.FileName, data);
+            }
+        }
+
+        string GetData(IEnumerable collection)
+        {
+            var builder = new StringBuilder();
+            foreach (ListViewItem item in collection)
+            {
+                // builder.AppendLine(item.SubItems[1].Text);
+                var items = new List<string>();
+                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                {
+                    items.Add(subItem.Text);
+                }
+                builder.Append(string.Join(",", items.ToArray()));
+                builder.Append("\r\n");
+            }
+
+            return builder.ToString();
+        }
+
     }
 }
